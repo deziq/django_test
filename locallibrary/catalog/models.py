@@ -1,6 +1,15 @@
 from django.db import models
 
-# Create your models here.
+# Used to generate URLs by reversing the URL patterns
+from django.urls import reverse
+
+# Required for unique book instances 
+import uuid
+
+
+
+
+
 class Genre(models.Model):
     """Model representing a book genre."""
     name = models.CharField(max_length=200, help_text='Enter a book genre (e.g. Science Fiction)')
@@ -12,8 +21,8 @@ class Genre(models.Model):
 
 
 
-from django.urls import reverse 
-# Used to generate URLs by reversing the URL patterns
+
+
 
 class Book(models.Model):
     """Model representing a book (but not a specific copy of a book)."""
@@ -48,8 +57,7 @@ class Book(models.Model):
 
 
 
-import uuid
-# Required for unique book instances
+
 
 class BookInstance(models.Model):
     """Model representing a specific copy of a book (i.e. that can be borrowed from the library)."""
@@ -79,6 +87,9 @@ class BookInstance(models.Model):
     def __str__(self):
         """String for representing the Model object."""
         return f'{self.id} ({self.book.title})'
+
+
+
 
 
 
