@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  {% block title %}
-  <title>Local Library</title>
+  {% block title %} 
+  <!-- this is the title area -->
   {% endblock %}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,7 +12,7 @@
         crossorigin="anonymous">
   <!-- Add additional CSS in static file -->
   {% load static %}
-  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link rel="stylesheet" href="{% static '/css/style.css' %}">
 </head>
 <body>
   <div class="container-fluid">
@@ -21,13 +21,15 @@
       {% block sidebar %}
         <ul class="sidebar-nav">
           <li><a href="{% url 'index' %}">Home</a></li>
-          <li><a href="">All books</a></li>
-          <li><a href="">All authors</a></li>
+          <li><a href="">Archivio Libri</a></li>
+          <li><a href="">Archivio Autori</a></li>
         </ul>
      {% endblock %}
       </div>
       <div class="col-sm-10 ">
-        {% block content %}{% endblock %}
+        {% block content %}
+        <!-- this is the content area -->
+        {% endblock %}
       </div>
     </div>
   </div>

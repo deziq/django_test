@@ -7,21 +7,13 @@ from django.urls import reverse
 import uuid
 
 
-
-
-
 class Genre(models.Model):
     """Model representing a book genre."""
-    name = models.CharField(max_length=200, help_text='Enter a book genre (e.g. Science Fiction)')
+    name = models.CharField(max_length=200, help_text='Inserisci il genere del libro (es Scienza, Commedia, ecc)')
     
     def __str__(self):
         """String for representing the Model object."""
         return self.name
-
-
-
-
-
 
 
 class Book(models.Model):
@@ -55,10 +47,6 @@ class Book(models.Model):
     display_genre.short_description = 'Genre'
 
 
-
-
-
-
 class BookInstance(models.Model):
     """Model representing a specific copy of a book (i.e. that can be borrowed from the library)."""
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text='Unique ID for this particular book across whole library')
@@ -87,11 +75,6 @@ class BookInstance(models.Model):
     def __str__(self):
         """String for representing the Model object."""
         return f'{self.id} ({self.book.title})'
-
-
-
-
-
 
 
 class Author(models.Model):

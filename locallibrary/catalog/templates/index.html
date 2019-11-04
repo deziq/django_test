@@ -1,14 +1,21 @@
 {% extends "base_generic.html" %}
 
+{% block title %}
+<title>Biblioteca Libera DeZiQ</title>
+{% endblock %}
+
 {% block content %}
   <h1>Deziq Book's</h1>
   <p>Benvenuto in libreria, developed by <em>DeZiQ studio</em>!</p>
   <h2>Contenuto Dinamico</h2>
   <p>I dati seguenti provengono dal db SQLite tramite il framework django.py:</p>
   <ul>
-    <li><strong>Libri:</strong> {{ num_books }}</li>
+    <li>
+    <strong>Libri:</strong> {{ num_books }}</li>
     <li><strong>Copie Totali:</strong> {{ num_instances }}</li>
     <li><strong>Copie Disponibili:</strong> {{ num_instances_available }}</li>
     <li><strong>Autori:</strong> {{ num_authors }}</li>
+    <li><strong>Libri con articolo "il":</strong> {{ num_articoli_il }}</li>
+    <li><strong>Generi:</strong> {{ num_genre }}</li>
   </ul>
 {% endblock %}
