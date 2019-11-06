@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Archivio Libri</h1>
+{% if book_list %}
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title">Elenco dei libri disponibili in biblioteca</h4>
+    <p class="card-text">Selezionare il libro per maggiri informaizoni</p>
+    <ul class="list-group list-group-flush">
+      {% for book in book_list %}
+      <li class="list-group-item">
+        <i class="fas fa-book"></i> <a href="{{ book.get_absolute_url }}">{{ book.title }}</a> ({{book.author}})
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% else %}
+<p>There are no books in the library.</p>
+{% endif %}
+{% endblock %}
