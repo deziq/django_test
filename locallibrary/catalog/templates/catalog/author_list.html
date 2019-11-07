@@ -9,9 +9,9 @@
         <p class="card-text">Selezionare un Autore per visualizzare i libri disponibili</p>
     </div>
     <ul class="list-group list-group-flush">
-        {% for autore in author_list %}
+        {% for author in author_list %}
         <li class="list-group-item">
-            <a href="#">{{ autore.first_name }}, {{ autore.last_name }} </a>
+            <i class="fas fa-user"></i> <a href="{{author.get_absolute_url}}"> {{ author.first_name }}, {{ author.last_name }} </a>
         </li>        
         {% endfor %}
     </ul>

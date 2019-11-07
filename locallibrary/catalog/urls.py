@@ -11,6 +11,6 @@ urlpatterns = [
     
     # Author url
     path('authors/', views.AuthorListView.as_view(), name='authors'),
-    path('author/<int:id>', views.AuthorDetailView.as_view(), name='author-detail'),
+    path('author/<int:pk>', views.AuthorDetailView.as_view(), name='author-detail'),
 
 ]
