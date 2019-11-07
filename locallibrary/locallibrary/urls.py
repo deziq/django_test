@@ -20,19 +20,15 @@ from django.views.generic import RedirectView
 from django.conf import settings
 from django.conf.urls.static import static
 
-# admin path
 urlpatterns = [
+    # Admin path
     path('admin/', admin.site.urls),
-]
-
-# add mapper for catalog
-urlpatterns += [
+    # Add mapper for catalog
     path('catalog/', include('catalog.urls')),
-]
-
-#Add URL maps to redirect the base URL to our application
-urlpatterns += [
+    # Add URL maps to redirect the base URL to our application
     path('', RedirectView.as_view(url='/catalog/', permanent=True)),
+    #Add Django site authentication urls (for login, logout, password management)
+    path('account/', include('django.contrib.auth.urls')),
 ]
 
 # Use static() to add url mapping to serve static files during development (only)

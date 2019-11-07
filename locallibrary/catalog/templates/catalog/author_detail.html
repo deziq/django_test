@@ -1,6 +1,22 @@
 {% extends 'base_generic.html' %}
 
 {% block content %}
-<h1>Titolo: {{ author.first_name }} {{ author.last_name }} </h1>
-<p><strong>Data di nascita:</strong>{{ author.date_of_birth }}</p>
+    <h1>Titolo: {{ author.first_name }} {{ author.last_name }} </h1>
+    <p><strong><i class="far fa-calendar-alt"></i></strong> {{ author.date_of_birth }}</p>
+    {% if author.date_of_death != null %}
+        <p><strong><i class="far fa-calendar-alt"></i></strong> {{ author.date_of_death }}</p>
+    {% endif %}
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Libri Pubblicati</h4>
+            <p class="card-text">Elenco dei libri pubblicati dall'autore</p>
+        </div>
+        <ul class="list-group list-group-flush">
+        {% for book in author.book_set.all %}
+            <li class="list-group-item">
+                <a href="{{ book.get_absolute_url }}">{{ book.title }}</a>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
 {% endblock %}

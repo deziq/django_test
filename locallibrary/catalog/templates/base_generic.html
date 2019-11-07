@@ -10,6 +10,10 @@
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" 
         crossorigin="anonymous">
+  <script 
+    src="https://kit.fontawesome.com/85515b5995.js" 
+    crossorigin="anonymous">
+  </script>
   <!-- Add additional CSS in static file -->
   {% load static %}
   <link rel="stylesheet" href="{% static '/css/style.css' %}">
@@ -23,6 +27,11 @@
           <li><a href="{% url 'index' %}">Home</a></li>
           <li><a href="{% url 'books' %}">Archivio Libri</a></li>
           <li><a href="{% url 'authors' %}">Archivio Autori</a></li>
+          {% if user.is_authenticated %}
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+          {% else %}
+            <li><a href="{% url 'login' %}">Login</a></li>            
+          {% endif %}
         </ul>
      {% endblock %}
       </div>
@@ -58,9 +67,5 @@
       </div>
     </div>
   </div>
-  <script 
-    src="https://kit.fontawesome.com/85515b5995.js" 
-    crossorigin="anonymous">
-  </script>
 </body>
 </html>

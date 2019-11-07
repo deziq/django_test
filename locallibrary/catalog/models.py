@@ -59,10 +59,10 @@ class BookInstance(models.Model):
     due_back = models.DateField(null=True, blank=True)
 
     LOAN_STATUS = (
-        ('m', 'Maintenance'),
-        ('o', 'On loan'),
-        ('a', 'Available'),
-        ('r', 'Reserved'),
+        ('m', 'Manutenzione'),
+        ('o', 'In prestito'),
+        ('a', 'Disponibile'),
+        ('r', 'Riservato'),
     )
 
     status = models.CharField(
