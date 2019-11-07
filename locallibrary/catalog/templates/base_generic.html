@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
   {% block title %} 
   <!-- this is the title area -->
@@ -22,7 +22,7 @@
         <ul class="sidebar-nav">
           <li><a href="{% url 'index' %}">Home</a></li>
           <li><a href="{% url 'books' %}">Archivio Libri</a></li>
-          <li><a href="">Archivio Autori</a></li>
+          <li><a href="{% url 'authors' %}">Archivio Autori</a></li>
         </ul>
      {% endblock %}
       </div>
@@ -38,13 +38,17 @@
             <div class="pagination">
               <span class="page-links">
                 {% if page_obj.has_previous %}
-                  <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}"><i class="fas fa-arrow-left"></i></a>
+                  <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">
+                    <i class="fas fa-arrow-left"></i>
+                  </a>
                 {% endif %}
                 <span class="page-current">
-                  <p>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</p>
+                  <p>pag. {{ page_obj.number }} di {{ page_obj.paginator.num_pages }}.</p>
                 </span>
                 {% if page_obj.has_next %}
-                  <a href="{{ request.path }}?page={{ page_obj.next_page_number }}"><i class="fas fa-arrow-right"></i></a>
+                  <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">
+                    <i class="fas fa-arrow-right"></i>
+                  </a>
                 {% endif %}
               </span>
             </div>
