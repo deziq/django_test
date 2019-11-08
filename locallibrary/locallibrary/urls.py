@@ -20,6 +20,8 @@ from django.views.generic import RedirectView
 from django.conf import settings
 from django.conf.urls.static import static
 
+from django.contrib.auth import views as auth_views
+
 urlpatterns = [
     # Admin path
     path('admin/', admin.site.urls),
@@ -28,7 +30,11 @@ urlpatterns = [
     # Add URL maps to redirect the base URL to our application
     path('', RedirectView.as_view(url='/catalog/', permanent=True)),
     #Add Django site authentication urls (for login, logout, password management)
-    path('utente/', include('django.contrib.auth.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
+
+    #path('login', auth_views.LogoutView.as_view(template_name='registration/login.html'), name='login'),
+    #path('logout/', auth_views.LogoutView.as_view(template_name='registration/logged_out.html'), name='logout'),
+
 ]
 
 # Use static() to add url mapping to serve static files during development (only)
