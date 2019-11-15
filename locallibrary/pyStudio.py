@@ -1,43 +1,106 @@
 import datetime
 
-class car(object):
-    limite_storicita = 30
-    n_auto = 0
-    def __init__(self,marca,modello,anno,colore,motore,consumoKM):
-        self.marca      = marca
-        self.modello    = modello
-        self.anno       = anno
-        self.colore     = colore
-        self.motore     = motore
-        self.consumoKM  = consumoKM
+class dipendente(object):
+    
+    aumento = 1.2
+    n_team = 0
 
-        car.n_auto += 1
+    def __init__(self,nome,cognome,stipendio):
+        self.nome = nome
+        self.cognome = cognome
+        self.stipendio = stipendio
+        self.email = f'{self.cognome}.{self.nome}@mail.it'.lower()
+        
+        dipendente.n_team += 1
 
     def full_name(self):
-        return f'Possiedo una {self.marca} {self.modello} di colore {self.colore}'
+        return f'{self.cognome} {self.nome}'
 
-    def storico(self):
-        now = datetime.datetime.now()
-        anno = now.year # now.month, now.day, now.hour, now.minute, now.second
-        storicita = anno-self.anno
-        msg = ''
-        if storicita >= self.limite_storicita:
-            msg = 'auto storica'
+    def calcola_aumento(self):
+        self.stipendio = int(self.stipendio*self.aumento)
+
+    @classmethod
+    def set_aumento(cls,valore):
+        cls.aumento = valore
+
+    @classmethod
+    def create_from_string(cls,stringa):
+        cognome,nome,stipendio = stringa.split('-');
+        return cls(cognome,nome,stipendio)
+
+class developer(dipendente):
+    aumento = 1.8
+    def __init__(self,nome,cognome,stupendio,linguaggi=None):
+        super().__init__(nome,cognome,stupendio)
+        if linguaggi is None:
+            self.linguaggi = []
         else:
-            msg = 'auto non storica'
-        return msg
+            self.linguaggi = linguaggi
 
-    def calcoloConsumo(self,km):
-        consumo = int(self.consumoKM * km)
-        return f'{consumo} lt'
+    def add_lng(self,lng):
+        if lng not in self.linguaggi:
+            self.linguaggi.append(lng)
+        else:
+            return 'Linguaggio esistente'
+
+    def remove_lng(self,lng):
+        if lng in self.linguaggi:
+            self.linguaggi.remove(lng)
+    
+    def show_lng(self):
+        for lng in self.linguaggi:
+            print('--->',lng)
 
 
-ferrari = car("Ferrari","Enzo",1995,"Rosso","V12",0.36)
-lamborghini = car("Lamborghini","Murcielago",1998,"Giallo","V10",0.58)
-ferrari.limite_storicita = 40
-print(ferrari.storico())
-print(ferrari.full_name())
-print(ferrari.calcoloConsumo(150))
-#print(ferrari.__dict__)
-#print(car.__dict__)
-print(car.n_auto)
+    def __str__(self):
+        return f'Il dipendente {self.full_name()} ({self.email}) guadagna {int(self.stipendio*12)},00 Euro all\'anno'
+
+    def __repr__(self):
+        return f'{self.full_name()}'
+
+
+class manager(dipendente):
+    aumento = 2.2
+
+    def __init__(self, nome, cognome, stipendio,team=None):
+        super().__init__(nome, cognome, stipendio)
+        if team is None:
+            self.team = []
+        else:
+            self.team = team
+    
+    def add_developer(self,dip):
+        if developer not in self.linguaggi:
+            self.team.append(developer)
+        else:
+            return 'Dipendente esistente'
+
+    def remove_developer(self,dip):
+        if developer in self.dipendenti:
+            self.team.remove(developer)
+    
+    def show_developer(self):
+        for developer in self.team:
+            print('--->',developer.full_name())
+    
+
+
+giovanni = developer('Giovanni','Allevi',1500);
+filippo = developer('Filippo','Bianchi',1800);
+franco = developer('Franco','Neri',1700);
+vito = developer('Vito','Rossi',1900);
+giulia = developer.create_from_string('Giulia-Loreto-1440');
+
+vito.add_lng('Java')
+vito.add_lng('Python')
+vito.add_lng('Delphi')
+vito.add_lng('PHP')
+vito.add_lng('ReactJS')
+
+
+aldo = manager('Aldo','Brando',4000,[vito])
+print(aldo.email)
+
+print(vito)
+
+print(repr(vito))
