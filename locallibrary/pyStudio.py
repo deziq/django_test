@@ -53,7 +53,7 @@ class developer(dipendente):
 
 
     def __str__(self):
-        return f'Il dipendente {self.full_name()} ({self.email}) guadagna {int(self.stipendio*12)},00 Euro all\'anno'
+        return f'Il dipendente {self.full_name()} ({self.email}) guadagna {int(self.stipendio*12)} Euro all\'anno'
 
     def __repr__(self):
         return f'{self.full_name()}'
@@ -104,3 +104,72 @@ print(aldo.email)
 print(vito)
 
 print(repr(vito))
+
+'''
+#import unicodedata
+def testa_parole(parola):
+    indice = (len(parola) -1)
+    nuova_parola = ""
+    print(input('scrivi è:'))
+    while indice >= 0:
+        nuova_parola += parola[indice]
+        indice -= 1
+    if nuova_parola == parola:
+        message = 'La parola passata è un palindromo! ' + nuova_parola
+        print(message)#.encode('utf8'))
+        #print()
+    else:
+        print('Mi dispiace, la parola inserita non è un palindromo...')
+
+
+#testa_parole('ISSI')
+
+
+def traduttore():
+    print(
+    #Ciao! questo programma traduce un testo passato in "rövarspråket".
+    #Ció significa che raddoppia ogni consonante delle parole e ci mette una "o" in mezzo...
+    )
+
+    vocali = "aeiou"
+    specials = [" ", ",", ".", "?", "!", '"',"'"]
+    
+    while True:
+        testo = input('\nInserisci il testo che desideri tradurre -> ')
+        tradotta = ""
+        for x in testo:
+            if x in vocali or x in specials:
+                tradotta += x #tradotta = tradotta + x
+            else:
+                tradotta = tradotta + x + "o" + x
+
+        print(f"Ecco a te la traduzione! '{tradotta}'")
+
+        if input("\nDesidere tradurre un'altra frase? ") == "no":
+            break
+
+#traduttore()
+'''
+
+import os
+import platform
+
+def sys_info():
+    print(f"Il Sistema attualmente in uso è: " + platform.system())
+    print("OS rilevato: " + os.name)
+    print("OS rilevato: " + platform.platform())
+    print("Aggiornato alla Versione: " + platform.release())
+
+sys_info()
+
+
+import keyboard  # using module keyboard
+while True:  # making a loop
+    try:  # used try so that if user pressed other than the given key error will not be shown
+        if keyboard.is_pressed('q'):  # if key 'q' is pressed 
+            print('You Pressed A Key!')
+            break  # finishing the loop
+        else:
+            pass
+    except:
+        break  # if user pressed a key other than the given key the loop will break
